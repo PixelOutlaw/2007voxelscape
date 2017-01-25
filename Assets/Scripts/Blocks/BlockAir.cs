@@ -11,6 +11,7 @@
 
             public override MeshData BlockData(Chunk chunk, int x, int y, int z, MeshData meshData)
             {
+                meshData.useRenderDataForCol = true;
                 return meshData;
             }
 

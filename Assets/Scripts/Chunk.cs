@@ -45,11 +45,11 @@ namespace Voxelscape
             }
 
             blocks[3, 4, 2] = new Block();
-            blocks[2, 4, 3] = new Block();
+            blocks[2, 4, 3] = new BlockGrass();
             blocks[2, 3, 4] = new Block();
-            blocks[4, 3, 2] = new Block();
+            blocks[4, 3, 2] = new BlockGrass();
             blocks[4, 2, 3] = new Block();
-            blocks[3, 2, 4] = new Block();
+            blocks[3, 2, 4] = new BlockGrass();
 
             UpdateChunk();
 
@@ -91,6 +91,16 @@ namespace Voxelscape
             _meshFilter.mesh.Clear();
             _meshFilter.mesh.vertices = meshData.vertices.ToArray();
             _meshFilter.mesh.triangles = meshData.triangles.ToArray();
+            _meshFilter.mesh.uv = meshData.uv.ToArray();
+            _meshFilter.mesh.RecalculateNormals();
+
+            _meshCollider.sharedMesh = null;
+            var mesh = new Mesh();
+            mesh.vertices = meshData.colVertices.ToArray();
+            mesh.triangles = meshData.colTriangles.ToArray();
+            mesh.RecalculateNormals();
+
+            _meshCollider.sharedMesh = mesh;
         }
     }
 }
